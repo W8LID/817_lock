@@ -42,12 +42,18 @@ void loop()
             if(invertMode) // Are we in inverting transpoder mode?
             {
                 tempFreq = lastFreqRig2 + offset; // Figure out where to go and set it
-                setFreq(tempFreq, RIG_2_PORT);
+                if(getFreqMode(RIG_2_PORT) != tempFreq)
+                {
+                    setFreq(tempFreq, RIG_2_PORT);
+                }
             }
             else // Non inverting, move the same direction
             {
                 tempFreq = lastFreqRig2 - offset;
-                setFreq(tempFreq, RIG_2_PORT);
+                if(getFreqMode(RIG_2_PORT) != tempFreq)
+                {
+                    setFreq(tempFreq, RIG_2_PORT);
+                }
             }
             
         }
